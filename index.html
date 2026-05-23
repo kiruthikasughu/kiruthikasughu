@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rakes A. — Software Development Engineer in Test</title>
+<meta name="description" content="SDET with 3+ years of experience in test automation, API testing, CI/CD, and quality engineering. Java · Selenium · Cucumber · Jenkins · Docker." />
+<meta property="og:title" content="Rakes A. — SDET" />
+<meta property="og:description" content="Software Development Engineer in Test specializing in automation frameworks, BDD, API testing, and CI/CD quality engineering." />
+<meta property="og:type" content="profile" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal:       #0D6B74;
+    --teal-light: #E6F4F5;
+    --teal-mid:   #1A9AA8;
+    --dark:       #0f1923;
+    --mid:        #3d4f5c;
+    --muted:      #637585;
+    --border:     #e2e8ed;
+    --bg:         #fafcfd;
+    --white:      #ffffff;
+    --mono:       'JetBrains Mono', monospace;
+    --serif:      'DM Serif Display', Georgia, serif;
+    --sans:       'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--mid);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,252,253,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--dark);
+    letter-spacing: 0.04em;
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 0 14px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .nav-links a:hover { color: var(--teal); border-color: var(--teal); text-decoration: none; }
+  .nav-badge {
+    font-size: 11px;
+    font-weight: 600;
+    background: #e6faf0;
+    color: #0a7a4a;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── LAYOUT ──────────────────────────────────────── */
+  main { max-width: 820px; margin: 0 auto; padding: 0 2rem; }
+
+  section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  /* ── SECTION LABELS ──────────────────────────────── */
+  .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  h2.section-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── HERO ────────────────────────────────────────── */
+  #hero {
+    padding: 100px 0 80px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-text { flex: 1; }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: var(--white);
+  }
+  .hero-tag::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+  h1 em { font-style: italic; color: var(--teal); }
+  .hero-summary {
+    font-size: 17px;
+    color: var(--mid);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: #fff;
+    border: 1.5px solid var(--teal);
+  }
+  .btn-primary:hover { background: #0a5860; border-color: #0a5860; text-decoration: none; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--mid);
+    border: 1.5px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal); text-decoration: none; }
+
+  /* avatar placeholder */
+  .hero-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    border: 3px solid var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--teal);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* stats row */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .stat {
+    background: var(--white);
+    padding: 20px 24px;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num em { color: var(--teal); font-style: normal; }
+  .stat-desc { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+
+  /* ── ABOUT ───────────────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 4rem;
+  }
+  .about-block h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 0.6rem;
+  }
+  .about-block p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .industry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--teal-light);
+    color: var(--teal);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid #c2e8ec;
+  }
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--teal-light);
+    border: 1px solid #c2e8ec;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .cert-name { font-size: 14px; font-weight: 500; color: var(--dark); }
+  .cert-issuer { font-size: 12px; color: var(--muted); }
+
+  /* ── NOW ─────────────────────────────────────────── */
+  .now-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .now-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s, transform .2s;
+  }
+  .now-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .now-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--teal);
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .now-card:hover::before { opacity: 1; }
+  .now-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .now-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  /* ── EXPERTISE ───────────────────────────────────── */
+  .expertise-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
+  }
+  .expertise-item { padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .expertise-item:nth-last-child(-n+2) { border-bottom: none; }
+  .expertise-item h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .expertise-item p { font-size: 14.5px; color: var(--muted); }
+
+  .skill-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 3rem;
+  }
+  .skill-pill {
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--mid);
+    transition: background .2s, border-color .2s, color .2s;
+    cursor: default;
+  }
+  .skill-pill:hover {
+    background: var(--teal-light);
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* ── EXPERIENCE ──────────────────────────────────── */
+  .exp-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--dark);
+  }
+  .exp-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .exp-meta span::before { content: '· '; }
+  .exp-meta span:first-child::before { content: ''; }
+
+  .project-block {
+    margin-bottom: 3rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--teal-light);
+    position: relative;
+  }
+  .project-block::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 4px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+  .project-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 3px;
+  }
+  .project-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .sub-section {
+    margin-top: 1rem;
+  }
+  .sub-section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+    margin-top: 1.2rem;
+  }
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+  }
+  .bullet-list li {
+    font-size: 14.5px;
+    color: var(--muted);
+    padding: 4px 0 4px 18px;
+    position: relative;
+    line-height: 1.65;
+  }
+  .bullet-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-weight: 400;
+  }
+  .env-line {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 1.5rem;
+    line-height: 1.6;
+  }
+  .env-label { color: var(--teal); font-weight: 500; }
+
+  /* ── ACHIEVEMENTS ────────────────────────────────── */
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .ach-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    background: var(--white);
+    transition: border-color .2s;
+  }
+  .ach-card:hover { border-color: var(--teal); }
+  .ach-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.08em;
+  }
+  .ach-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .ach-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+  /* ── CREDENTIALS ─────────────────────────────────── */
+  .cred-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+  .cred-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    background: var(--white);
+    text-align: center;
+    transition: border-color .2s, transform .2s;
+  }
+  .cred-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .cred-badge {
+    width: 56px; height: 56px;
+    border-radius: 12px;
+    margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .cred-badge.istqb { background: #dbeafe; }
+  .cred-badge.oracle { background: #fee2e2; }
+  .cred-badge.mca { background: var(--teal-light); }
+  .cred-card h3 { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+  .cred-card p { font-size: 12.5px; color: var(--muted); }
+
+  /* ── CONTACT ─────────────────────────────────────── */
+  #contact { border-bottom: none; }
+  .contact-wrapper {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 3rem;
+    color: #fff;
+  }
+  .contact-wrapper .label { color: #5fd4dd; }
+  .contact-wrapper .label::after { background: #2a4550; }
+  .contact-wrapper h2 {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .contact-wrapper p { color: #8faab8; margin-bottom: 2rem; }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: #c8dde8;
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #1e3545;
+    transition: color .2s;
+  }
+  .contact-link:hover { color: #5fd4dd; text-decoration: none; }
+  .contact-icon {
+    width: 32px; height: 32px;
+    background: #1a2f3d;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── MOBILE ──────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero-top { flex-direction: column-reverse; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .expertise-list { grid-template-columns: 1fr; }
+    .expertise-item:last-child { border-bottom: none; }
+    .expertise-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+    .expertise-item:nth-last-child(1) { border-bottom: none; }
+    .contact-wrapper { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><span>RA</span> · Rakes A.</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#now">Now</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#achievements">Work</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="nav-badge">Open to opportunities</span>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-top">
+      <div class="hero-text">
+        <div class="hero-tag">SDET · Ireland / Remote</div>
+        <h1>Quality engineering<br/>built on <em>automation</em><br/>and precision.</h1>
+        <p class="hero-summary">
+          Rakes A. is a Software Development Engineer in Test with 3+ years at EXL Infotech, specialising in automation frameworks, BDD, API testing, CI/CD integration, and end-to-end quality assurance across travel-technology platforms.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get in touch</a>
+          <a href="https://linkedin.com/in/" class="btn btn-ghost">View LinkedIn</a>
+          <a href="Rakes_SDET_Resume.pdf" class="btn btn-ghost" download>Download Résumé ↓</a>
+        </div>
+      </div>
+      <div class="hero-avatar">RA</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">3<em>+</em></div>
+        <div class="stat-desc">Years SDET experience at EXL Infotech</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-desc">Major enterprise B2B projects delivered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">300<em>+</em></div>
+        <div class="stat-desc">Test cases designed and automated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-desc">Industry certifications — ISTQB, Oracle, MCA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ─────────────────────────────────────── -->
+  <section id="about">
+    <div class="label">About</div>
+    <h2 class="section-title">A specialist SDET profile<br/>built around automation quality.</h2>
+
+    <div class="about-grid">
+      <div class="about-block">
+        <h3>Professional focus</h3>
+        <p>Work spans test automation architecture, CI/CD pipeline integration, BDD framework design, REST and SOAP API validation, cross-browser testing, performance testing, and UAT — primarily in travel-technology B2B platforms.</p>
+      </div>
+      <div class="about-block">
+        <h3>Current direction</h3>
+        <p>Expanding expertise in containerised test infrastructure using Docker and Kubernetes, cloud-based CI/CD pipelines, and exploring AI-assisted test generation for smarter regression coverage.</p>
+      </div>
+      <div class="about-block">
+        <h3>Domain experience</h3>
+        <div class="industry-tags">
+          <span class="tag">Travel Technology</span>
+          <span class="tag">B2B SaaS</span>
+          <span class="tag">Hotel APIs</span>
+          <span class="tag">Flight Systems</span>
+          <span class="tag">Global Distribution</span>
+        </div>
+      </div>
+      <div class="about-block">
+        <h3>Certifications</h3>
+        <div class="cert-item">
+          <div class="cert-icon">🏅</div>
+          <div>
+            <div class="cert-name">ISTQB CTFL</div>
+            <div class="cert-issuer">UK &amp; Ireland Testing Board · 2018 v2</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">☕</div>
+          <div>
+            <div class="cert-name">Oracle Certified Associate — Java SE 8</div>
+            <div class="cert-issuer">Oracle University</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🎓</div>
+          <div>
+            <div class="cert-name">Master of Computer Applications (MCA)</div>
+            <div class="cert-issuer">Anna University, India</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NOW ───────────────────────────────────────── -->
+  <section id="now">
+    <div class="label">Now</div>
+    <h2 class="section-title">What I'm working on right now.</h2>
+    <p class="section-sub">Current focus areas, active learning, and the quality-engineering ideas shaping day-to-day work.</p>
+
+    <div class="now-grid">
+      <div class="now-card">
+        <h3>Containerised Test Infrastructure</h3>
+        <p>Building Docker-based Selenium Grid setups with docker-compose for reproducible, CI-ready browser environments that eliminate flaky cross-browser issues.</p>
+      </div>
+      <div class="now-card">
+        <h3>API Contract Testing</h3>
+        <p>Exploring Pact-based consumer-driven contract testing to catch integration breaks between microservices before they reach staging environments.</p>
+      </div>
+      <div class="now-card">
+        <h3>CI/CD Quality Gates</h3>
+        <p>Refining Jenkins pipeline-as-code practices to enforce quality gates — blocking deployments when test pass rate drops below defined thresholds.</p>
+      </div>
+      <div class="now-card">
+        <h3>AI-Assisted Test Generation</h3>
+        <p>Experimenting with LLM-driven test case generation to extend regression coverage automatically from User Stories and acceptance criteria documents.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERTISE ──────────────────────────────────── -->
+  <section id="expertise">
+    <div class="label">Expertise</div>
+    <h2 class="section-title">Core areas of work.</h2>
+    <p class="section-sub">Depth and breadth across the full quality engineering stack — from framework design to production validation.</p>
+
+    <div class="expertise-list">
+      <div class="expertise-item">
+        <h3>Test Automation Architecture</h3>
+        <p>Designing hybrid frameworks from scratch using Java, Selenium WebDriver, TestNG, and Maven — incorporating POM, Data-Driven, Keyword-Driven, and BDD patterns for maximum maintainability and scale.</p>
+      </div>
+      <div class="expertise-item">
+        <h3>API & Web Services Testing</h3>
+        <p>End-to-end REST and SOAP API validation using Postman, RestAssured, and SoapUI — covering schema validation, contract testing, authentication, negative testing, and response time SLAs.</p>
+      </div>
+      <div class="expertise-item">
+        <h3>BDD / Cucumber Framework</h3>
+        <p>Writing human-readable Gherkin feature files and mapping step definitions in Java, enabling non-technical stakeholders to review and validate test scenarios as living specification documents.</p>
+      </div>
+      <div class="expertise-item">
+        <h3>CI/CD & DevOps Integration</h3>
+        <p>Configuring Jenkins declarative pipelines with GitHub integration, Docker-based Selenium Grid, and quality gate enforcement — enabling shift-left automated quality across every sprint.</p>
+      </div>
+      <div class="expertise-item">
+        <h3>Performance & Load Testing</h3>
+        <p>Designing JMeter test plans for critical APIs under concurrent load — analysing throughput, response-time percentiles, and error rates to surface bottlenecks before production.</p>
+      </div>
+      <div class="expertise-item">
+        <h3>Cross-Browser & Regression Testing</h3>
+        <p>Running parallel regression suites across Chrome, Firefox, Edge, and Safari via Selenium Grid — with full compatibility matrices covering OS combinations and browser versions.</p>
+      </div>
+    </div>
+
+    <div class="skill-cloud">
+      <span class="skill-pill">Java 8</span>
+      <span class="skill-pill">Selenium WebDriver</span>
+      <span class="skill-pill">TestNG</span>
+      <span class="skill-pill">Cucumber / Gherkin</span>
+      <span class="skill-pill">Selenium Grid</span>
+      <span class="skill-pill">RestAssured</span>
+      <span class="skill-pill">Postman</span>
+      <span class="skill-pill">SoapUI</span>
+      <span class="skill-pill">JMeter</span>
+      <span class="skill-pill">Jenkins</span>
+      <span class="skill-pill">Docker</span>
+      <span class="skill-pill">Maven</span>
+      <span class="skill-pill">Git / GitHub</span>
+      <span class="skill-pill">JIRA</span>
+      <span class="skill-pill">Extent Reports</span>
+      <span class="skill-pill">Allure Reports</span>
+      <span class="skill-pill">Page Object Model</span>
+      <span class="skill-pill">SQL</span>
+      <span class="skill-pill">XML / JSON</span>
+      <span class="skill-pill">Cypress</span>
+      <span class="skill-pill">Spring Boot</span>
+      <span class="skill-pill">Mockito</span>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ─────────────────────────────────── -->
+  <section id="experience">
+    <div class="label">Experience</div>
+    <h2 class="section-title">Career snapshot.</h2>
+    <p class="section-sub">End-to-end QA ownership across enterprise travel-technology platforms — from framework architecture to production sign-off.</p>
+
+    <div class="exp-header">
+      <div class="exp-role">Software Development Engineer in Test</div>
+      <div class="exp-meta">
+        <span>EXL Infotech</span>
+        <span>April 2022 – Present</span>
+        <span>Travel Domain B2B</span>
+      </div>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project-block">
+      <div class="project-title">Project 1 — NextGen Travel Search Engine</div>
+      <div class="project-subtitle">Global B2B platform distributing hotel, flight, car &amp; package products to international clients</div>
+
+      <div class="sub-section-label">Test Planning &amp; Strategy</div>
+      <ul class="bullet-list">
+        <li>Collaborated with BAs and Product Owners to analyse User Stories and translate them into sprint-aligned test plans, effort estimates, and traceability matrices.</li>
+        <li>Defined QA strategy spanning functional, regression, integration, cross-browser, API, performance, and UAT phases with clear entry/exit criteria.</li>
+        <li>Embedded QA representative in Scrum ceremonies — sprint planning, stand-ups, reviews, and retrospectives — providing continuous quality visibility.</li>
+      </ul>
+
+      <div class="sub-section-label">Automation Framework Design</div>
+      <ul class="bullet-list">
+        <li>Architected a scalable hybrid framework from scratch using Java 8, Selenium WebDriver, TestNG, and Maven — combining POM, Data-Driven, and Keyword-Driven patterns.</li>
+        <li>Configured Maven Surefire Plugin with TestNG XML suites for parallel execution across browser thread pools, significantly reducing regression suite run time.</li>
+        <li>Integrated Cucumber BDD for Gherkin-based feature files, enabling business-readable acceptance test criteria reviewed directly by product owners.</li>
+        <li>Set up Jenkins CI/CD pipelines with GitHub webhooks to trigger automated regression on every commit, with Extent and Allure report generation on failure.</li>
+        <li>Containerised Selenium Grid using Docker Compose for ephemeral, reproducible browser environments across CI pipeline runs.</li>
+      </ul>
+
+      <div class="sub-section-label">API Testing</div>
+      <ul class="bullet-list">
+        <li>Designed comprehensive REST and SOAP API test suites using Postman and RestAssured, covering hotel search, availability, booking, and cancellation endpoints.</li>
+        <li>Automated API regression with RestAssured integrated into Maven build lifecycle, running alongside UI tests in Jenkins pipelines.</li>
+        <li>Performed negative API testing — invalid inputs, missing fields, boundary values — validating correct 4xx/5xx error codes and meaningful messages.</li>
+      </ul>
+
+      <div class="sub-section-label">Performance &amp; Security</div>
+      <ul class="bullet-list">
+        <li>Designed JMeter load test plans for critical booking APIs, simulating concurrent B2B traffic to surface throughput bottlenecks and response-time degradation.</li>
+        <li>Conducted security validation using Postman and custom Java — SQL injection probes, XSS payload testing, HTTPS enforcement, and CORS policy checks.</li>
+      </ul>
+
+      <div class="env-line"><span class="env-label">Environment:</span> Java 8 · Selenium WebDriver · TestNG · Cucumber · Maven · Jenkins · Docker · Selenium Grid · Postman · RestAssured · JMeter · Extent Reports · Allure · JIRA · Git · IntelliJ IDEA</div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-block">
+      <div class="project-title">Project 2 — Supplier API Portal</div>
+      <div class="project-subtitle">XML/JSON API distribution platform connecting global hotel chains, retailers &amp; travel suppliers</div>
+
+      <div class="sub-section-label">Framework &amp; Architecture</div>
+      <ul class="bullet-list">
+        <li>Built the entire test automation infrastructure — POM-based Selenium framework with separate packages for Page Objects, Step Definitions, utilities, config readers, test data, and reporting modules.</li>
+        <li>Developed reusable utility libraries for browser management, wait strategies, screenshot capture, Excel-driven data reading, and properties file parsing — reducing duplication across 200+ test scripts.</li>
+        <li>Implemented configuration-driven multi-environment setup (Dev, SIT, UAT, Prod) via a Java Config Manager, enabling environment switching without code changes.</li>
+        <li>Built a custom TestNG ITestListener to capture real-time test status and attach failure screenshots automatically to Extent Report dashboards.</li>
+      </ul>
+
+      <div class="sub-section-label">API &amp; Web Services</div>
+      <ul class="bullet-list">
+        <li>Deep multi-layer API testing via Postman, RestAssured, Apache HttpClient, and SoapUI — covering hotel content, availability, rate feeds, booking, and cancellation services.</li>
+        <li>Executed WSDL-based SOAP testing in SoapUI, validating XML against XSD schemas and testing XSLT transformations between supplier and client data formats.</li>
+        <li>Built Postman Collection Runner workflows with pre-request scripts and assertions on status codes, response values, response time SLAs, and headers — exported as Newman CLI runs for CI.</li>
+        <li>Performed contract testing to verify API responses conformed to JSON/XML schemas shared with global B2B clients, preventing client-side integration failures.</li>
+      </ul>
+
+      <div class="sub-section-label">Functional, Regression &amp; UAT</div>
+      <ul class="bullet-list">
+        <li>Developed 300+ manual and automated test cases covering supplier portal UI — login, onboarding, content management, rate loading, availability, and booking management.</li>
+        <li>Executed full regression cycles pre-release and performed backend data validation with SQL queries against Oracle and MySQL — confirming UI/API actions persisted correctly.</li>
+        <li>Managed UAT execution cycles — preparing plans, conducting stakeholder walkthroughs, capturing feedback, and tracking sign-off against acceptance criteria.</li>
+      </ul>
+
+      <div class="sub-section-label">Code Quality &amp; Collaboration</div>
+      <ul class="bullet-list">
+        <li>Conducted peer code reviews enforcing SOLID principles, design pattern usage, naming conventions, and documentation standards.</li>
+        <li>Mentored junior QA team members on Selenium framework navigation, TestNG annotations, Cucumber BDD, and effective defect reporting.</li>
+        <li>Delivered Test Plans, Test Strategy documents, RTM, Test Summary Reports, and Lessons Learned documentation at project closure.</li>
+      </ul>
+
+      <div class="env-line"><span class="env-label">Environment:</span> Java 8 · Selenium WebDriver · TestNG · Cucumber · RestAssured · Apache HttpClient · SoapUI · Postman · JMeter · Oracle DB · MySQL · Maven · Jenkins · Docker · Git · IntelliJ IDEA · XSD/XSLT</div>
+    </div>
+  </section>
+
+  <!-- ── ACHIEVEMENTS ────────────────────────────────── -->
+  <section id="achievements">
+    <div class="label">Selected work</div>
+    <h2 class="section-title">Key accomplishments.</h2>
+    <p class="section-sub">Specific outcomes combining enterprise impact, technical precision, and quality-engineering depth.</p>
+
+    <div class="ach-grid">
+      <div class="ach-card">
+        <div class="ach-num">01 / Automation</div>
+        <h3>Hybrid Framework from Scratch</h3>
+        <p>Designed and delivered a full Java + Selenium + TestNG + Cucumber hybrid automation framework integrating POM, Data-Driven, and Keyword-Driven patterns — zero legacy codebase inherited.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">02 / CI/CD</div>
+        <h3>Jenkins + Docker Grid Pipeline</h3>
+        <p>Containerised the entire Selenium Grid with Docker Compose and wired it into Jenkins declarative pipelines — enabling consistent, reproducible parallel browser test runs on every code commit.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">03 / API</div>
+        <h3>300+ Automated API Tests</h3>
+        <p>Built and maintained a full suite of REST and SOAP API regression tests using RestAssured and SoapUI — integrated into CI pipelines with Newman CLI for headless execution.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">04 / Performance</div>
+        <h3>JMeter Load Testing Programme</h3>
+        <p>Designed and executed load test scenarios simulating concurrent B2B client traffic — identifying API bottlenecks and validating SLA compliance before each production release.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">05 / BDD</div>
+        <h3>Living Documentation with Cucumber</h3>
+        <p>Established Gherkin-based BDD across both projects, enabling product owners to use feature files as a live specification reference — bridging the gap between business and engineering.</p>
+      </div>
+      <div class="ach-card">
+        <div class="ach-num">06 / Mentoring</div>
+        <h3>QA Team Capability Building</h3>
+        <p>Mentored junior QA engineers on automation framework design, TestNG, Cucumber BDD, code reviews, and defect reporting — raising team-wide automation maturity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CREDENTIALS ─────────────────────────────────── -->
+  <section id="credentials">
+    <div class="label">Credentials</div>
+    <h2 class="section-title">Education &amp; certifications.</h2>
+    <p class="section-sub">Formally verified skills anchoring the technical profile in recognised industry standards.</p>
+
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="cred-badge istqb">🏅</div>
+        <h3>ISTQB CTFL</h3>
+        <p>Certified Tester Foundation Level 2018 v2<br/>UK &amp; Ireland Testing Board</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-badge oracle">☕</div>
+        <h3>Oracle Certified Associate</h3>
+        <p>Java SE 8 Programmer<br/>Oracle University</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-badge mca">🎓</div>
+        <h3>Master of Computer Applications</h3>
+        <p>MCA<br/>Anna University, India</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ─────────────────────────────────────── -->
+  <section id="contact">
+    <div class="contact-wrapper">
+      <div class="label">Contact</div>
+      <h2>Open to SDET, QA Engineer, and<br/>Test Automation roles — globally.</h2>
+      <p>Available for full-time, contract, and remote opportunities. Happy to discuss automation strategy, framework architecture, or quality engineering transformation.</p>
+
+      <div class="contact-links">
+        <a href="mailto:a.Rakes@gmail.com" class="contact-link">
+          <div class="contact-icon">✉</div>
+          a.Rakes@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/" class="contact-link" target="_blank" rel="noopener">
+          <div class="contact-icon">in</div>
+          LinkedIn — update with your profile URL
+        </a>
+        <a href="https://github.com/" class="contact-link" target="_blank" rel="noopener">
+          <div class="contact-icon">gh</div>
+          GitHub — update with your username
+        </a>
+        <a href="Rakes_SDET_Resume.pdf" class="contact-link" download>
+          <div class="contact-icon">↓</div>
+          Download Résumé PDF
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © Rakes A. · Software Development Engineer in Test · Built as a one-page professional profile.
+</footer>
+
+</body>
+</html>
